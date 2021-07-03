@@ -16,15 +16,15 @@ public class Search {
                 dish.conformity=1000;
             }
             else if(dish.name.contains(name)){
-                dish.conformity=100*name.length()/(double)dish.name.length();
-                if(dish.conformity<=10) dish.conformity=10.1;
+                dish.conformity=1000*name.length()/(double)dish.name.length();
+                if(dish.conformity<=100) dish.conformity=100.1;
             }
             else {
                 for(char i: name.toCharArray()){
                     if(dish.name.contains(String.valueOf(i))){
-                        dish.conformity++;
+                        dish.conformity+=10/dish.name.length();
                     }
-                    if (dish.conformity>=10) dish.conformity=9.9;
+                    if (dish.conformity>=100) dish.conformity=99.9;
                 }
             }
             tempDishes.add(dish);
