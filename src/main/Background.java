@@ -11,6 +11,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Random;
 
 public class Background extends JPanel {
 
@@ -24,8 +26,8 @@ public class Background extends JPanel {
     public double verticalSize=0.4;
     public Image []backgroundImgs=new Image[3];
     public Image []searchResult=new Image[4];
-    public ArrayList<Dish> tempDishes;
-    public Image randomImage;
+    public ArrayList<Dish> tempDishes=new ArrayList<>();
+    public Image randomImage=null;
     public int []tmpWidth=new int[3];
     public int []tmpHeight=new int[3];
     JButton search=new JButton("搜索");
@@ -42,25 +44,23 @@ public class Background extends JPanel {
         text.setBounds(20,100,283,50);
         search.setVisible(true);
         search.addActionListener(new ActionListener() {        //为按钮添加点击事件监听器
-
-                                     @Override
-                                     public void actionPerformed(ActionEvent e) {
-                                         // TODO Auto-generated method stub
-                                         tempDishes= Search.SearchByName(Main.Dishes,text.getText());
-                                        System.out.println(tempDishes);
-                                        for(int i=0;i<=4;i++){
-                                            searchResult[i]=Load.image("dishes/"+tempDishes.get(i).path);
-                                        }
-                                        repaint();
-                                     }
-                                 });
+             @Override
+             public void actionPerformed(ActionEvent e) {
+                 if(text.getText().length()>0&&!text.getText().startsWith(" ")){
+                     tempDishes= Search.SearchByName(Main.Dishes,text.getText());
+                     searchResult[0]=Load.image("dishes/"+tempDishes.get(0).path);
+                     repaint();
+                 }
+             }
+         });
         generate.setVisible(true);
         generate.addActionListener(new ActionListener() {        //为按钮添加点击事件监听器
-
             @Override
             public void actionPerformed(ActionEvent e) {
-                int random = (int) (Math.random()*(Main.Dishes.size()-1)+1);
+                Random randoms=new Random(System.currentTimeMillis());
+                int random = (int) (randoms.nextDouble()*(Main.Dishes.size()-1)+1);
                 randomImage=Load.image("dishes/"+Main.Dishes.get(random).path);
+                randomString=Main.Dishes.get(random).name;
                 repaint();
             }
         });
@@ -126,6 +126,25 @@ public class Background extends JPanel {
         search.repaint();
         generate.repaint();
         text.repaint();
+
+        if(randomImage!=null){
+            Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(30));
+            Main.canvas.drawCenteredStringByOutline(g,randomString,tmpWidth[0],15,1,f,430,Color.BLACK,Color.BLACK);
+            g.drawImage(randomImage, 30,450,45+250,450+200,0, 0, randomImage.getWidth(null), randomImage.getHeight(null),null);
+        }
+        if(!tempDishes.isEmpty()&&!text.getText().isEmpty()){
+            if(tempDishes.get(0).conformity<0.01){
+                Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(40));
+                Main.canvas.drawCenteredStringByOutline(g,"无结果",tmpWidth[1],tmpWidth[0]+15,1,f,100,Color.BLACK,Color.BLACK);
+
+            }
+            else{
+                Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(40));
+                Main.canvas.drawCenteredStringByOutline(g,tempDishes.get(0).name,tmpWidth[1],tmpWidth[0]+15,1,f,100,Color.BLACK,Color.BLACK);
+                g.drawImage(searchResult[0], tmpWidth[0]+30,120,tmpWidth[0]+tmpWidth[1]+10,tmpWidth[1]+100,0, 0, searchResult[0].getWidth(null), searchResult[0].getHeight(null),null);
+
+            }
+           }
     }
 
 }

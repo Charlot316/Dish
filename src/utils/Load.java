@@ -13,7 +13,6 @@ public class Load {
     public static Image image(String path) {
         BufferedImage img = null;
         File file = new File("res/"+path);
-        System.out.println(file.getAbsolutePath());
         try {
             img = ImageIO.read(file);
         } catch (IOException e) {
