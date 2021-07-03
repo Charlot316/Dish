@@ -24,7 +24,6 @@ public class Load {
 
     public static BufferedReader File() {
         File file = new File("Menu.txt");
-        System.out.println(file.getAbsolutePath());
         InputStreamReader isr = null;
         try {
             isr = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);

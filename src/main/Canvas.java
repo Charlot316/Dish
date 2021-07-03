@@ -12,20 +12,19 @@ import java.sql.SQLException;
 public class Canvas extends JLayeredPane{
     public JFrame frame;
     public KeyListener keyListener;
-    public Square []squares=new Square[3];
     public Background background=new Background();
+    public Content content=new Content();
     /**
      * 初始化画板类
      * @param frame 当前的JFrame的对象
      */
     public Canvas(JFrame frame) {
+        setBounds(0, 0, Main.WIDTH, Main.HEIGHT);
         this.frame = frame;
-        this.add(background);
-        for(int i=0;i<3;i++){
-            squares[i]=new Square(i);
-            this.add(squares[i]);
-        }
         setVisible(true);
+        this.add(background,1);
+        this.add(content,2);
+
     }
 
 
@@ -71,6 +70,7 @@ public class Canvas extends JLayeredPane{
         g.setFont(font);
         g.drawString(text, x, y);
     }
+
 
     /**
      * 绘画居中且带有描边的字符串

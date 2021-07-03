@@ -8,7 +8,8 @@ public class Dish {
     public String name;
     public String path;
     public int Outrageous;
-    public Image image;
+    //public Image image;
+    public double conformity=0;
 
     public Dish(String name, int outrageous) {
         this.name = name;
@@ -27,7 +28,7 @@ public class Dish {
     public Dish(String name) {
         this.name = name;
         this.path=this.name+".png";
-        //image= Load.image(this.path);
+        //image= Load.image("dishes/"+this.path);
     }
 
     public Dish(String name, String path) {
