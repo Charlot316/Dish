@@ -7,14 +7,15 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import java.net.URL;
+import java.nio.charset.StandardCharsets;
 
 public class Load {
     public static Image image(String path) {
         BufferedImage img = null;
-        URL url = Load.class.getResource("/res/" + path);
+        File file = new File("res/"+path);
+        System.out.println(file.getAbsolutePath());
         try {
-            img = ImageIO.read(url);
+            img = ImageIO.read(file);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -23,28 +24,29 @@ public class Load {
 
     public static BufferedReader File() {
         File file = new File("Menu.txt");
-        FileReader reader=null;
+        System.out.println(file.getAbsolutePath());
+        InputStreamReader isr = null;
         try {
-            reader=new FileReader(file);
+            isr = new InputStreamReader(new FileInputStream(file), StandardCharsets.UTF_8);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        System.out.println(file.getAbsolutePath());
-        return new BufferedReader(reader);
+        assert isr != null;
+        return new BufferedReader(isr);
     }
 
     public static BufferedWriter outPutFile() {
 
-        File file = new File("Menu2.txt");
-        FileWriter outputStream=null;
+        FileOutputStream writerStream = null;
         try {
-            outputStream = new FileWriter(file);
+            writerStream = new FileOutputStream("Menu.txt", false);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-        return new BufferedWriter(outputStream);
+        BufferedWriter oWriter;
+        assert writerStream != null;
+        oWriter = new BufferedWriter(new OutputStreamWriter(writerStream, StandardCharsets.UTF_8));
+        return oWriter;
     }
 
     public static void Initialize(){

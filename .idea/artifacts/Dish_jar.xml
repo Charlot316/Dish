@@ -1,0 +1,10 @@
+<component name="ArtifactManager">
+  <artifact name="Dish:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/Dish_jar</output-path>
+    <root id="root">
+      <element id="archive" name="Dish.jar">
+        <element id="module-output" name="Dish" />
+      </element>
+    </root>
+  </artifact>
+</component>
