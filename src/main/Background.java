@@ -112,13 +112,13 @@ public class Background extends JPanel {
 
         Font f = new Font("黑体", Font.BOLD, Set.fontByWidth(tmpWidth[0]/6,"搜索"));
         FontMetrics fm = sun.font.FontDesignMetrics.getMetrics(f);
-        Main.canvas.drawCenteredStringByOutline(g,"搜索",tmpWidth[0],interval,1,f,interval+fm.getHeight(),Color.BLACK,Color.BLACK);
+        Main.canvas.drawCenteredStringByOutline(g,"搜索",tmpWidth[0],interval,1,f,interval+fm.getHeight(),Color.BLACK,Color.white);
         f = new Font("黑体", Font.BOLD, Set.fontByWidth(tmpWidth[2]/3,"手气不错"));
         fm = sun.font.FontDesignMetrics.getMetrics(f);
-        Main.canvas.drawCenteredStringByOutline(g,"手气不错",tmpWidth[0],interval,1,f,(int)(Main.HEIGHT*(verticalSize)-1.5*interval)+interval+(int)(0.5*interval)+fm.getHeight(),Color.BLACK,Color.BLACK);
+        Main.canvas.drawCenteredStringByOutline(g,"手气不错",tmpWidth[0],interval,1,f,(int)(Main.HEIGHT*(verticalSize)-1.5*interval)+interval+(int)(0.5*interval)+fm.getHeight(),Color.BLACK,Color.white);
         f = new Font("黑体", Font.BOLD, Set.fontByWidth(tmpWidth[1]/3,"搜索结果"));
         fm = sun.font.FontDesignMetrics.getMetrics(f);
-        Main.canvas.drawCenteredStringByOutline(g,"搜索结果",tmpWidth[1],2*interval+(int)(Main.WIDTH*(horizontalSize)-1.5*interval),1,f,interval+fm.getHeight(),Color.BLACK,Color.BLACK);
+        Main.canvas.drawCenteredStringByOutline(g,"搜索结果",tmpWidth[1],2*interval+(int)(Main.WIDTH*(horizontalSize)-1.5*interval),1,f,interval+fm.getHeight(),Color.BLACK,Color.white);
 
     }
     public void paint(Graphics g) {
@@ -129,18 +129,18 @@ public class Background extends JPanel {
 
         if(randomImage!=null){
             Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(30));
-            Main.canvas.drawCenteredStringByOutline(g,randomString,tmpWidth[0],15,1,f,430,Color.BLACK,Color.BLACK);
+            Main.canvas.drawCenteredStringByOutline(g,randomString,tmpWidth[0],9,1,f,430,Color.BLACK,Color.BLACK);
             g.drawImage(randomImage, 30,450,45+250,450+200,0, 0, randomImage.getWidth(null), randomImage.getHeight(null),null);
         }
         if(!tempDishes.isEmpty()&&!text.getText().isEmpty()){
             if(tempDishes.get(0).conformity<0.01){
                 Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(40));
-                Main.canvas.drawCenteredStringByOutline(g,"无结果",tmpWidth[1],tmpWidth[0]+15,1,f,100,Color.BLACK,Color.BLACK);
+                Main.canvas.drawCenteredStringByOutline(g,"无结果",tmpWidth[1],tmpWidth[0]+17,1,f,100,Color.BLACK,Color.BLACK);
 
             }
             else{
                 Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(40));
-                Main.canvas.drawCenteredStringByOutline(g,tempDishes.get(0).name,tmpWidth[1],tmpWidth[0]+15,1,f,100,Color.BLACK,Color.BLACK);
+                Main.canvas.drawCenteredStringByOutline(g,tempDishes.get(0).name,tmpWidth[1],tmpWidth[0]+17,1,f,100,Color.BLACK,Color.BLACK);
                 g.drawImage(searchResult[0], tmpWidth[0]+30,120,tmpWidth[0]+tmpWidth[1]+10,tmpWidth[1]+100,0, 0, searchResult[0].getWidth(null), searchResult[0].getHeight(null),null);
 
             }

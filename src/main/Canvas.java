@@ -50,9 +50,9 @@ public class Canvas extends JLayeredPane{
         gg.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
         gg.setColor(color1);
         gg.fill(shape);
-        gg.setColor(color2);
-        gg.setStroke(new BasicStroke(width));
-        gg.draw(shape);
+//        gg.setColor(color2);
+//        gg.setStroke(new BasicStroke(width));
+//        gg.draw(shape);
     }
 
     /**

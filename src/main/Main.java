@@ -17,7 +17,7 @@ public class Main {
     public static Canvas canvas;
     public static int count=0;
     public static ArrayList<Dish> Dishes=new ArrayList<>();
-    public static JFrame frame = new JFrame("Dishes！");
+    public static JFrame frame = new JFrame("嘻餐Overcooked");
 
     public static void Initialize(){
 
