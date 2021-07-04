@@ -59,8 +59,11 @@ public class Background extends JPanel {
             public void actionPerformed(ActionEvent e) {
                 Random randoms=new Random(System.currentTimeMillis());
                 int random = (int) (randoms.nextDouble()*(Main.Dishes.size()-1)+1);
+                while(!Main.Dishes.get(random).isOutrageous){
+                    random = (int) (randoms.nextDouble()*(Main.Dishes.size()-1)+1);
+                }
                 randomImage=Load.image("dishes/"+Main.Dishes.get(random).path);
-                randomString=Main.Dishes.get(random).name;
+                randomString="「"+Main.Dishes.get(random).name+"」";
                 repaint();
             }
         });
@@ -110,13 +113,13 @@ public class Background extends JPanel {
             g.drawImage(backgroundImgs[id], x+3,y+3,x+3+width-6,y+3+height-6,0, 0, backgroundImgs[id].getWidth(null), backgroundImgs[id].getHeight(null),null);
         }
 
-        Font f = new Font("黑体", Font.BOLD, Set.fontByWidth(tmpWidth[0]/6,"搜索"));
+        Font f = new Font("思源宋体", Font.BOLD, Set.fontByWidth(tmpWidth[0]/6,"搜索"));
         FontMetrics fm = sun.font.FontDesignMetrics.getMetrics(f);
         Main.canvas.drawCenteredStringByOutline(g,"搜索",tmpWidth[0],interval,1,f,interval+fm.getHeight(),Color.BLACK,Color.white);
-        f = new Font("黑体", Font.BOLD, Set.fontByWidth(tmpWidth[2]/3,"手气不错"));
+        f = new Font("思源宋体", Font.BOLD, Set.fontByWidth(tmpWidth[2]/3,"手气不错"));
         fm = sun.font.FontDesignMetrics.getMetrics(f);
         Main.canvas.drawCenteredStringByOutline(g,"手气不错",tmpWidth[0],interval,1,f,(int)(Main.HEIGHT*(verticalSize)-1.5*interval)+interval+(int)(0.5*interval)+fm.getHeight(),Color.BLACK,Color.white);
-        f = new Font("黑体", Font.BOLD, Set.fontByWidth(tmpWidth[1]/3,"搜索结果"));
+        f = new Font("思源宋体", Font.BOLD, Set.fontByWidth(tmpWidth[1]/3,"搜索结果"));
         fm = sun.font.FontDesignMetrics.getMetrics(f);
         Main.canvas.drawCenteredStringByOutline(g,"搜索结果",tmpWidth[1],2*interval+(int)(Main.WIDTH*(horizontalSize)-1.5*interval),1,f,interval+fm.getHeight(),Color.BLACK,Color.white);
 
@@ -128,19 +131,19 @@ public class Background extends JPanel {
         text.repaint();
 
         if(randomImage!=null){
-            Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(30));
+            Font f = new Font("思源宋体", Font.BOLD, Set.fontByHeight(30));
             Main.canvas.drawCenteredStringByOutline(g,randomString,tmpWidth[0],9,1,f,430,Color.BLACK,Color.BLACK);
             g.drawImage(randomImage, 30,450,45+250,450+200,0, 0, randomImage.getWidth(null), randomImage.getHeight(null),null);
         }
         if(!tempDishes.isEmpty()&&!text.getText().isEmpty()){
             if(tempDishes.get(0).conformity<0.01){
-                Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(40));
+                Font f = new Font("思源宋体", Font.BOLD, Set.fontByHeight(40));
                 Main.canvas.drawCenteredStringByOutline(g,"无结果",tmpWidth[1],tmpWidth[0]+17,1,f,100,Color.BLACK,Color.BLACK);
 
             }
             else{
-                Font f = new Font("黑体", Font.BOLD, Set.fontByHeight(40));
-                Main.canvas.drawCenteredStringByOutline(g,tempDishes.get(0).name,tmpWidth[1],tmpWidth[0]+17,1,f,100,Color.BLACK,Color.BLACK);
+                Font f = new Font("思源宋体", Font.BOLD, Set.fontByHeight(40));
+                Main.canvas.drawCenteredStringByOutline(g,"「"+tempDishes.get(0).name+"」",tmpWidth[1],tmpWidth[0]+17,1,f,100,Color.BLACK,Color.BLACK);
                 g.drawImage(searchResult[0], tmpWidth[0]+30,120,tmpWidth[0]+tmpWidth[1]+10,tmpWidth[1]+100,0, 0, searchResult[0].getWidth(null), searchResult[0].getHeight(null),null);
 
             }

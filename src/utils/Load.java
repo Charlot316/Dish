@@ -57,6 +57,7 @@ public class Load {
                 command = bufferedReader.readLine();
                 arguments = command.split("\\s+");
                 Dish tempDish=new Dish(arguments[0]);
+                if(arguments.length>1) tempDish.isOutrageous=true;
                 Main.Dishes.add(tempDish);
             }
         } catch (IOException e) {
