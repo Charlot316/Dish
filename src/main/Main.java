@@ -13,7 +13,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class Main {
-    public static  int WIDTH = 800, HEIGHT = 700, FPS = 100;
+    public static  int WIDTH = 800, HEIGHT = 650, FPS = 100;
     public static Canvas canvas;
     public static int count=0;
     public static ArrayList<Dish> Dishes=new ArrayList<>();
